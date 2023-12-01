@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { appWithTranslation, SSRConfig } from 'next-i18next';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import '@contentful/live-preview/style.css';
 
 import { Settings } from '@src/components/features/settings';
@@ -87,7 +87,6 @@ const CustomApp = ({
                 <Hydrate state={dehydratedState}>
                   <Layout preview={previewActive}>
                     <Component {...pageProps} err={err} />
-                    <Settings />
                   </Layout>
                 </Hydrate>
               </ThemeProvider>
