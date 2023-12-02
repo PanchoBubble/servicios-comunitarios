@@ -1,0 +1,27 @@
+fragment CtaGroupFields on GrupoDeBotones {
+  colorPalette
+  headline
+  subline {
+    json
+  }
+  buttonsCollection {
+    items {
+      __typename
+      sys {
+        id
+      }
+      ctaText
+      targetPage {
+        ...PageLinkFields
+      }
+      urlParameters
+      colorPalette
+    }
+  }
+}
+
+query CtfGrupoBotones($id: String!, $locale: String, $preview: Boolean) {
+  grupoDeBotones(id: $id, locale: $locale, preview: $preview) {
+    ...CtaGroupFields
+  }
+}

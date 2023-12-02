@@ -31,3 +31,8 @@ export const optimizeLineBreak = (str: string): string => {
 
   return `${tokens.join(' ')}\u00A0${lastToken}`;
 };
+export type DeepPartial<T> = T extends object
+  ? {
+      [P in keyof T]?: DeepPartial<T[P]>;
+    }
+  : T;
