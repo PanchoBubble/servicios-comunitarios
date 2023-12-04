@@ -2118,9 +2118,6 @@ type PageTopSectionCollection {
 input PageTopSectionFilter {
   AND: [PageTopSectionFilter]
   OR: [PageTopSectionFilter]
-  bodyText_contains: String
-  bodyText_exists: Boolean
-  bodyText_not_contains: String
   colorPalette: String
   colorPalette_contains: String
   colorPalette_exists: Boolean
@@ -2129,13 +2126,6 @@ input PageTopSectionFilter {
   colorPalette_not_contains: String
   colorPalette_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  ctaText: String
-  ctaText_contains: String
-  ctaText_exists: Boolean
-  ctaText_in: [String]
-  ctaText_not: String
-  ctaText_not_contains: String
-  ctaText_not_in: [String]
   headline: String
   headline_contains: String
   headline_exists: Boolean
@@ -2143,10 +2133,6 @@ input PageTopSectionFilter {
   headline_not: String
   headline_not_contains: String
   headline_not_in: [String]
-  imageStyle: Boolean
-  imageStyle_exists: Boolean
-  imageStyle_not: Boolean
-  image_exists: Boolean
   internalName: String
   internalName_contains: String
   internalName_exists: Boolean
@@ -2155,10 +2141,9 @@ input PageTopSectionFilter {
   internalName_not_contains: String
   internalName_not_in: [String]
   sys: SysFilter
-  targetPage_exists: Boolean
 }
 
-union PageTopSectionItem = ComponentDuplex | ComponentHeroBanner
+union PageTopSectionItem = ComponentDuplex | ComponentHeroBanner | GrupoDeBotones
 
 """
 The 'Quality' type represents quality as whole numeric values between `1` and `100`.
@@ -2566,9 +2551,6 @@ input cfgroupLinkMultiTypeNestedFilter {
 input cftopSectionMultiTypeNestedFilter {
   AND: [cftopSectionMultiTypeNestedFilter]
   OR: [cftopSectionMultiTypeNestedFilter]
-  bodyText_contains: String
-  bodyText_exists: Boolean
-  bodyText_not_contains: String
   colorPalette: String
   colorPalette_contains: String
   colorPalette_exists: Boolean
@@ -2577,13 +2559,6 @@ input cftopSectionMultiTypeNestedFilter {
   colorPalette_not_contains: String
   colorPalette_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  ctaText: String
-  ctaText_contains: String
-  ctaText_exists: Boolean
-  ctaText_in: [String]
-  ctaText_not: String
-  ctaText_not_contains: String
-  ctaText_not_in: [String]
   headline: String
   headline_contains: String
   headline_exists: Boolean
@@ -2591,10 +2566,6 @@ input cftopSectionMultiTypeNestedFilter {
   headline_not: String
   headline_not_contains: String
   headline_not_in: [String]
-  imageStyle: Boolean
-  imageStyle_exists: Boolean
-  imageStyle_not: Boolean
-  image_exists: Boolean
   internalName: String
   internalName_contains: String
   internalName_exists: Boolean
@@ -2603,5 +2574,4 @@ input cftopSectionMultiTypeNestedFilter {
   internalName_not_contains: String
   internalName_not_in: [String]
   sys: SysFilter
-  targetPage_exists: Boolean
 }

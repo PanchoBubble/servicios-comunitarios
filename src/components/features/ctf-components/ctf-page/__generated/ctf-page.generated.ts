@@ -8,7 +8,9 @@ export type PageTopSectionFields_ComponentDuplex_Fragment = { __typename: 'Compo
 
 export type PageTopSectionFields_ComponentHeroBanner_Fragment = { __typename: 'ComponentHeroBanner' };
 
-export type PageTopSectionFieldsFragment = PageTopSectionFields_ComponentDuplex_Fragment | PageTopSectionFields_ComponentHeroBanner_Fragment;
+export type PageTopSectionFields_GrupoDeBotones_Fragment = { __typename: 'GrupoDeBotones' };
+
+export type PageTopSectionFieldsFragment = PageTopSectionFields_ComponentDuplex_Fragment | PageTopSectionFields_ComponentHeroBanner_Fragment | PageTopSectionFields_GrupoDeBotones_Fragment;
 
 export type PageExtraSectionItemFields_ComponentCta_Fragment = { __typename: 'ComponentCta' };
 
@@ -35,6 +37,9 @@ export type CtfPageFieldsFragment = { __typename: 'Page', pageName?: string | nu
     ) | (
       { __typename: 'ComponentHeroBanner', sys: { __typename?: 'Sys', id: string } }
       & PageTopSectionFields_ComponentHeroBanner_Fragment
+    ) | (
+      { __typename: 'GrupoDeBotones', sys: { __typename?: 'Sys', id: string } }
+      & PageTopSectionFields_GrupoDeBotones_Fragment
     ) | null> } | null, extraSectionCollection?: { __typename?: 'PageExtraSectionCollection', items: Array<(
       { __typename: 'ComponentCta', sys: { __typename?: 'Sys', id: string } }
       & PageExtraSectionItemFields_ComponentCta_Fragment

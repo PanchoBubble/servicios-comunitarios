@@ -33,6 +33,7 @@ export const getServerSideProps = async ({ locale, query }: NextPageContext) => 
 
     // Dynamic queries
     const pageData = await useCtfPageQuery.fetcher({ slug: 'home', locale, preview })();
+
     const page = pageData.pageCollection?.items[0];
 
     const topSection = page?.topSectionCollection?.items;
