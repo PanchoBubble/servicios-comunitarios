@@ -2,9 +2,9 @@ fragment PageTopSectionFields on PageTopSectionItem {
   __typename
 }
 
-fragment PageContentFields on PagePageContent {
-  __typename
-}
+#fragment PageContentFields on PagePageContent {
+#  __typename
+#}
 
 fragment PageExtraSectionItemFields on PageExtraSectionItem {
   __typename
@@ -39,15 +39,15 @@ fragment CtfPageFields on Page {
       ...PageTopSectionFields
     }
   }
-  pageContent {
-    ... on Entry {
-      __typename
-      sys {
-        id
-      }
-    }
-    ...PageContentFields
-  }
+#  pageContent {
+#    ... on Entry {
+#      __typename
+#      sys {
+#        id
+#      }
+#    }
+#    ...PageContentFields
+#  }
   extraSectionCollection(limit: 20) {
     items {
       ... on Entry {

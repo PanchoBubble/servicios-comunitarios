@@ -1,10 +1,10 @@
+import { InspectorModeTags } from '@contentful/live-preview/dist/inspectorMode/types';
 import { Theme, Typography, TypographyProps } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import React from 'react';
 
 import { Markdown } from '@src/components/features/markdown';
-import { InspectorModeTags } from '@contentful/live-preview/dist/inspectorMode/types';
 
 const useStyles = makeStyles((theme: Theme) => ({
   containerCentered: {

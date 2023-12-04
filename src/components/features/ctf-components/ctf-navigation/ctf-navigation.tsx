@@ -98,7 +98,7 @@ export const CtfNavigation = (props: NavigationFieldsFragment) => {
 
   return (
     <>
-      {navigationContent?.menuItemsCollection?.items.length && (
+      {navigationContent?.menuItemsCollection?.items.length ? (
         <nav role="navigation">
           <ul className={classes.menu}>
             {navigationContent.menuItemsCollection.items.map(
@@ -127,7 +127,7 @@ export const CtfNavigation = (props: NavigationFieldsFragment) => {
             )}
           </ul>
         </nav>
-      )}
+      ) : null}
     </>
   );
 };

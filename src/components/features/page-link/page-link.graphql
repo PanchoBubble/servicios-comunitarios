@@ -5,12 +5,12 @@ fragment PageLinkFields on Page {
     id
   }
   pageName
-  pageContent(locale: $locale, preview: $preview) {
-    ... on Entry {
-      __typename
-      sys {
-        id
-      }
-    }
-  }
+#  pageContent(locale: $locale, preview: $preview) {
+#    ... on Entry {
+#      __typename
+#      sys {
+#        id
+#      }
+#    }
+#  }
 }

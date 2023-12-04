@@ -8,7 +8,7 @@ import LayoutContext, { defaultLayout } from '@src/layout-context';
 const CtfPage = (props: CtfPageFieldsFragment) => {
   const topSection =
     props.topSectionCollection && props.topSectionCollection.items.filter(it => !!it);
-  const content = props.pageContent;
+  //const content = props.pageContent;
   const extraSection =
     props.extraSectionCollection && props.extraSectionCollection.items.filter(it => !!it);
 
@@ -26,11 +26,11 @@ const CtfPage = (props: CtfPageFieldsFragment) => {
           </LayoutContext.Provider>
         ))}
 
-      {content && (
-        <LayoutContext.Provider value={defaultLayout} key={content.sys.id}>
-          <ComponentResolver componentProps={content} />
-        </LayoutContext.Provider>
-      )}
+      {/*{content && (*/}
+      {/*  <LayoutContext.Provider value={defaultLayout} key={content.sys.id}>*/}
+      {/*    <ComponentResolver componentProps={content} />*/}
+      {/*  </LayoutContext.Provider>*/}
+      {/*)}*/}
 
       {extraSection &&
         extraSection.map(entry => (

@@ -3,12 +3,12 @@ import { makeStyles } from '@mui/styles';
 
 import { CtaGroupFieldsFragment } from './__generated/ctf-cta-group.generated';
 
+import { CtfCtaIndividual } from '@src/components/features/ctf-components/ctf-cta-individual/ctf-cta-individual';
 import { CtfRichtext } from '@src/components/features/ctf-components/ctf-richtext/ctf-richtext';
 import { PageLink } from '@src/components/features/page-link';
 import LayoutContext, { defaultLayout } from '@src/layout-context';
 import { getColorConfigFromPalette } from '@src/theme';
 import { optimizeLineBreak } from '@src/utils';
-import { CtfCtaIndividual } from '@src/components/features/ctf-components/ctf-cta-individual/ctf-cta-individual';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {

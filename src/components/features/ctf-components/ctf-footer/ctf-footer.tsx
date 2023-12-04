@@ -13,7 +13,7 @@ import {
   getLinkDisplayText,
   getLinkHrefPrefix,
 } from '@src/components/features/ctf-components/ctf-navigation/utils';
-import { LanguageSelector } from '@src/components/features/language-selector';
+// import { LanguageSelector } from '@src/components/features/language-selector';
 import { Link } from '@src/components/shared/link';
 import { useContentfulContext } from '@src/contentful-context';
 import Logo from '@src/icons/logo-tagline.svg';
@@ -261,11 +261,11 @@ export const CtfFooter = (props: FooterFieldsFragment) => {
 
   return (
     <>
-      <Container {...containerProps} maxWidth={false} className={classes.footerContainer}>
-        <footer className={classes.footer}>
-          {footerContent?.menuItemsCollection?.items?.length && (
+      {footerContent?.menuItemsCollection?.items?.length ? (
+        <Container {...containerProps} maxWidth={false} className={classes.footerContainer}>
+          <footer className={classes.footer}>
             <nav role="navigation" className={classes.menuWrapper}>
-              {footerContent.menuItemsCollection.items.map(
+              {footerContent.menuItemsCollection.items?.map(
                 menuItem =>
                   menuItem && (
                     <div key={menuItem.sys.id} className={classes.menuColumn}>
@@ -295,35 +295,35 @@ export const CtfFooter = (props: FooterFieldsFragment) => {
                   ),
               )}
             </nav>
-          )}
-          <section className={classes.footerEndSection}>
-            <LanguageSelector />
-          </section>
-        </footer>
-      </Container>
+            {/*<section className={classes.footerEndSection}>*/}
+            {/*  <LanguageSelector />*/}
+            {/*</section>*/}
+          </footer>
+        </Container>
+      ) : null}
       <Container maxWidth={false} className={classes.footerCorporateContainer}>
         <section className={classes.footerCorporate}>
-          <div className={classes.corporateLogoMenu}>
-            <div className={classes.corporateLogoContainer}>
-              <Logo className={classes.corporateLogo} />
-            </div>
+          {/*<div className={classes.corporateLogoMenu}>*/}
+          {/*  <div className={classes.corporateLogoContainer}>*/}
+          {/*    <Logo className={classes.corporateLogo} />*/}
+          {/*  </div>*/}
 
-            <section className={classes.copyrightAndLegal}>
-              <p className={classes.copyright}>
-                {t('legal.copyright', { year: new Date().getFullYear() })}
-              </p>
-              {footerContent?.legalLinks?.featuredPagesCollection?.items?.length && (
-                <nav role="navigation" className={classes.legalMenuWrapper}>
-                  <ul className={classes.legalMenu}>
-                    {renderMenuGroupLinks(
-                      footerContent.legalLinks.featuredPagesCollection,
-                      classes.legalMenuItem,
-                    )}
-                  </ul>
-                </nav>
-              )}
-            </section>
-          </div>
+          {/*  <section className={classes.copyrightAndLegal}>*/}
+          {/*    <p className={classes.copyright}>*/}
+          {/*      {t('legal.copyright', { year: new Date().getFullYear() })}*/}
+          {/*    </p>*/}
+          {/*    {footerContent?.legalLinks?.featuredPagesCollection?.items?.length && (*/}
+          {/*      <nav role="navigation" className={classes.legalMenuWrapper}>*/}
+          {/*        <ul className={classes.legalMenu}>*/}
+          {/*          {renderMenuGroupLinks(*/}
+          {/*            footerContent.legalLinks.featuredPagesCollection,*/}
+          {/*            classes.legalMenuItem,*/}
+          {/*          )}*/}
+          {/*        </ul>*/}
+          {/*      </nav>*/}
+          {/*    )}*/}
+          {/*  </section>*/}
+          {/*</div>*/}
 
           <div className={classes.socialDisclaimer}>
             <div className={classes.socialWrapper}>

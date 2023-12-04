@@ -1,23 +1,5 @@
 import dynamic from 'next/dynamic';
 
-const pageTopicMap = {
-  TopicProduct: dynamic(() =>
-    import('@src/components/features/ctf-components/ctf-product/ctf-product-gql').then(
-      module => module.CtfProductGql,
-    ),
-  ),
-  TopicBusinessInfo: dynamic(() =>
-    import('@src/components/features/ctf-components/ctf-business-info/ctf-business-info-gql').then(
-      module => module.CtfBusinessInfoGql,
-    ),
-  ),
-  ComponentProductTable: dynamic(() =>
-    import('@src/components/features/ctf-components/ctf-product-table/ctf-product-table-gql').then(
-      module => module.CtfProductTableGql,
-    ),
-  ),
-};
-
 export const componentMap = {
   ComponentCta: dynamic(() =>
     import('@src/components/features/ctf-components/ctf-cta/ctf-cta').then(module => module.CtfCta),
@@ -52,15 +34,9 @@ export const componentMap = {
       module => module.CtfTextBlock,
     ),
   ),
-  TopicPerson: dynamic(() =>
-    import('@src/components/features/ctf-components/ctf-person/ctf-person').then(
-      module => module.CtfPerson,
-    ),
-  ),
 };
 
 export const componentGqlMap = {
-  ...pageTopicMap,
   ComponentCta: dynamic(() =>
     import('@src/components/features/ctf-components/ctf-cta/ctf-cta-gql').then(
       module => module.CtfCtaGql,
@@ -94,11 +70,6 @@ export const componentGqlMap = {
   ComponentTextBlock: dynamic(() =>
     import('@src/components/features/ctf-components/ctf-text-block/ctf-text-block-gql').then(
       module => module.CtfTextBlockGql,
-    ),
-  ),
-  TopicPerson: dynamic(() =>
-    import('@src/components/features/ctf-components/ctf-person/ctf-person-gql').then(
-      module => module.CtfPersonGql,
     ),
   ),
   ComponentFooter: dynamic(() =>

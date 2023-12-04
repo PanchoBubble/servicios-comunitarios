@@ -236,7 +236,6 @@ export const CtfRichtext = (props: CtfRichtextPropsInterface) => {
             'info-block',
             'duplex',
             'product-description',
-            'card-person',
             'category',
             'cta-subline',
             'hero-banner-body',

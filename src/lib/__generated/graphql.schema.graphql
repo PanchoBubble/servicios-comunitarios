@@ -96,9 +96,6 @@ type AssetLinkingCollections {
   componentQuoteCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentQuoteCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   seoCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): SeoCollection
-  topicBusinessInfoCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): TopicBusinessInfoCollection
-  topicPersonCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): TopicPersonCollection
-  topicProductCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): TopicProductCollection
 }
 
 enum AssetOrder {
@@ -267,7 +264,7 @@ type ComponentCtaSublineResources {
 union ComponentCtaTargetPage = Page
 
 """
-Full-width container for displaying side-by-side image and copy, includes multiple layout options [See type definition](https://app.contentful.com/spaces/ruj3ara9e3f2/content_types/componentDuplex)
+Todo el ancho de pantalla, imagen de un lado y texto del otro [See type definition](https://app.contentful.com/spaces/ruj3ara9e3f2/content_types/componentDuplex)
 """
 type ComponentDuplex implements Entry {
   bodyText(locale: String): ComponentDuplexBodyText
@@ -764,7 +761,7 @@ type ComponentProductTable implements Entry {
   headline(locale: String): String
   internalName(locale: String): String
   linkedFrom(allowedLocales: [String]): ComponentProductTableLinkingCollections
-  productsCollection(limit: Int = 100, locale: String, order: [ComponentProductTableProductsCollectionOrder], preview: Boolean, skip: Int = 0, where: TopicProductFilter): ComponentProductTableProductsCollection
+  productsCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentProductTableProductsCollection
   subline(locale: String): String
   sys: Sys!
 }
@@ -794,7 +791,6 @@ input ComponentProductTableFilter {
   internalName_not: String
   internalName_not_contains: String
   internalName_not_in: [String]
-  products: cfTopicProductNestedFilter
   productsCollection_exists: Boolean
   subline: String
   subline_contains: String
@@ -808,24 +804,6 @@ input ComponentProductTableFilter {
 
 type ComponentProductTableLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageCollection(limit: Int = 100, locale: String, order: [ComponentProductTableLinkingCollectionsPageCollectionOrder], preview: Boolean, skip: Int = 0): PageCollection
-}
-
-enum ComponentProductTableLinkingCollectionsPageCollectionOrder {
-  internalName_ASC
-  internalName_DESC
-  pageName_ASC
-  pageName_DESC
-  slug_ASC
-  slug_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
 }
 
 enum ComponentProductTableOrder {
@@ -846,27 +824,10 @@ enum ComponentProductTableOrder {
 }
 
 type ComponentProductTableProductsCollection {
-  items: [TopicProduct]!
+  items: [Entry]!
   limit: Int!
   skip: Int!
   total: Int!
-}
-
-enum ComponentProductTableProductsCollectionOrder {
-  internalName_ASC
-  internalName_DESC
-  name_ASC
-  name_DESC
-  price_ASC
-  price_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
 }
 
 """
@@ -1590,7 +1551,7 @@ type IndividualCta implements Entry {
   internalName(locale: String): String
   linkedFrom(allowedLocales: [String]): IndividualCtaLinkingCollections
   sys: Sys!
-  targetPage(locale: String, preview: Boolean): IndividualCtaTargetPage
+  targetPage(locale: String, preview: Boolean, where: PageFilter): Page
   urlParameters(locale: String): String
 }
 
@@ -1627,6 +1588,7 @@ input IndividualCtaFilter {
   internalName_not_contains: String
   internalName_not_in: [String]
   sys: SysFilter
+  targetPage: cfPageNestedFilter
   targetPage_exists: Boolean
   urlParameters: String
   urlParameters_contains: String
@@ -1678,8 +1640,6 @@ enum IndividualCtaOrder {
   urlParameters_DESC
 }
 
-union IndividualCtaTargetPage = Page
-
 """
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
@@ -1725,7 +1685,6 @@ input MenuGroupFeaturedPagesFilter {
   internalName_not: String
   internalName_not_contains: String
   internalName_not_in: [String]
-  pageContent_exists: Boolean
   pageName: String
   pageName_contains: String
   pageName_exists: Boolean
@@ -1788,7 +1747,6 @@ input MenuGroupGroupLinkFilter {
   internalName_not: String
   internalName_not_contains: String
   internalName_not_in: [String]
-  pageContent_exists: Boolean
   pageName: String
   pageName_contains: String
   pageName_exists: Boolean
@@ -1945,7 +1903,6 @@ type Page implements Entry {
   extraSectionCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, where: PageExtraSectionFilter): PageExtraSectionCollection
   internalName(locale: String): String
   linkedFrom(allowedLocales: [String]): PageLinkingCollections
-  pageContent(locale: String, preview: Boolean): PagePageContent
   pageName(locale: String): String
   seo(locale: String, preview: Boolean, where: SeoFilter): Seo
   slug(locale: String): String
@@ -1988,7 +1945,7 @@ input PageExtraSectionFilter {
   sys: SysFilter
 }
 
-union PageExtraSectionItem = ComponentCta | ComponentDuplex | ComponentHeroBanner | ComponentInfoBlock | ComponentQuote | ComponentTextBlock
+union PageExtraSectionItem = ComponentCta | ComponentDuplex | ComponentHeroBanner | ComponentInfoBlock | ComponentQuote | ComponentTextBlock | GrupoDeBotones
 
 input PageFilter {
   AND: [PageFilter]
@@ -2003,7 +1960,6 @@ input PageFilter {
   internalName_not: String
   internalName_not_contains: String
   internalName_not_in: [String]
-  pageContent_exists: Boolean
   pageName: String
   pageName_contains: String
   pageName_exists: Boolean
@@ -2152,8 +2108,6 @@ enum PageOrder {
   sys_publishedVersion_DESC
 }
 
-union PagePageContent = ComponentProductTable | TopicBusinessInfo | TopicProduct
-
 type PageTopSectionCollection {
   items: [PageTopSectionItem]!
   limit: Int!
@@ -2164,6 +2118,9 @@ type PageTopSectionCollection {
 input PageTopSectionFilter {
   AND: [PageTopSectionFilter]
   OR: [PageTopSectionFilter]
+  bodyText_contains: String
+  bodyText_exists: Boolean
+  bodyText_not_contains: String
   colorPalette: String
   colorPalette_contains: String
   colorPalette_exists: Boolean
@@ -2172,6 +2129,24 @@ input PageTopSectionFilter {
   colorPalette_not_contains: String
   colorPalette_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
+  ctaText: String
+  ctaText_contains: String
+  ctaText_exists: Boolean
+  ctaText_in: [String]
+  ctaText_not: String
+  ctaText_not_contains: String
+  ctaText_not_in: [String]
+  headline: String
+  headline_contains: String
+  headline_exists: Boolean
+  headline_in: [String]
+  headline_not: String
+  headline_not_contains: String
+  headline_not_in: [String]
+  imageStyle: Boolean
+  imageStyle_exists: Boolean
+  imageStyle_not: Boolean
+  image_exists: Boolean
   internalName: String
   internalName_contains: String
   internalName_exists: Boolean
@@ -2180,9 +2155,10 @@ input PageTopSectionFilter {
   internalName_not_contains: String
   internalName_not_in: [String]
   sys: SysFilter
+  targetPage_exists: Boolean
 }
 
-union PageTopSectionItem = ComponentCta | ComponentDuplex | ComponentHeroBanner | ComponentInfoBlock | ComponentQuote | ComponentTextBlock | GrupoDeBotones
+union PageTopSectionItem = ComponentDuplex | ComponentHeroBanner
 
 """
 The 'Quality' type represents quality as whole numeric values between `1` and `100`.
@@ -2221,14 +2197,6 @@ type Query {
   pageCollection(limit: Int = 100, locale: String, order: [PageOrder], preview: Boolean, skip: Int = 0, where: PageFilter): PageCollection
   seo(id: String!, locale: String, preview: Boolean): Seo
   seoCollection(limit: Int = 100, locale: String, order: [SeoOrder], preview: Boolean, skip: Int = 0, where: SeoFilter): SeoCollection
-  topicBusinessInfo(id: String!, locale: String, preview: Boolean): TopicBusinessInfo
-  topicBusinessInfoCollection(limit: Int = 100, locale: String, order: [TopicBusinessInfoOrder], preview: Boolean, skip: Int = 0, where: TopicBusinessInfoFilter): TopicBusinessInfoCollection
-  topicPerson(id: String!, locale: String, preview: Boolean): TopicPerson
-  topicPersonCollection(limit: Int = 100, locale: String, order: [TopicPersonOrder], preview: Boolean, skip: Int = 0, where: TopicPersonFilter): TopicPersonCollection
-  topicProduct(id: String!, locale: String, preview: Boolean): TopicProduct
-  topicProductCollection(limit: Int = 100, locale: String, order: [TopicProductOrder], preview: Boolean, skip: Int = 0, where: TopicProductFilter): TopicProductCollection
-  topicProductFeature(id: String!, locale: String, preview: Boolean): TopicProductFeature
-  topicProductFeatureCollection(limit: Int = 100, locale: String, order: [TopicProductFeatureOrder], preview: Boolean, skip: Int = 0, where: TopicProductFeatureFilter): TopicProductFeatureCollection
 }
 
 type ResourceLink {
@@ -2387,547 +2355,6 @@ input SysFilter {
   publishedVersion_not_in: [Float]
 }
 
-"""
-Container for ever-green content like About us, Career pages, FAQ, Knowledge base & more [See type definition](https://app.contentful.com/spaces/ruj3ara9e3f2/content_types/topicBusinessInfo)
-"""
-type TopicBusinessInfo implements Entry {
-  body(locale: String): TopicBusinessInfoBody
-  contentfulMetadata: ContentfulMetadata!
-  featuredImage(locale: String, preview: Boolean): Asset
-  internalName(locale: String): String
-  linkedFrom(allowedLocales: [String]): TopicBusinessInfoLinkingCollections
-  name(locale: String): String
-  shortDescription(locale: String): String
-  sys: Sys!
-}
-
-type TopicBusinessInfoBody {
-  json: JSON!
-  links: TopicBusinessInfoBodyLinks!
-}
-
-type TopicBusinessInfoBodyAssets {
-  block: [Asset]!
-  hyperlink: [Asset]!
-}
-
-type TopicBusinessInfoBodyEntries {
-  block: [Entry]!
-  hyperlink: [Entry]!
-  inline: [Entry]!
-}
-
-type TopicBusinessInfoBodyLinks {
-  assets: TopicBusinessInfoBodyAssets!
-  entries: TopicBusinessInfoBodyEntries!
-  resources: TopicBusinessInfoBodyResources!
-}
-
-type TopicBusinessInfoBodyResources {
-  block: [ResourceLink!]!
-  hyperlink: [ResourceLink!]!
-  inline: [ResourceLink!]!
-}
-
-type TopicBusinessInfoCollection {
-  items: [TopicBusinessInfo]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-input TopicBusinessInfoFilter {
-  AND: [TopicBusinessInfoFilter]
-  OR: [TopicBusinessInfoFilter]
-  body_contains: String
-  body_exists: Boolean
-  body_not_contains: String
-  contentfulMetadata: ContentfulMetadataFilter
-  featuredImage_exists: Boolean
-  internalName: String
-  internalName_contains: String
-  internalName_exists: Boolean
-  internalName_in: [String]
-  internalName_not: String
-  internalName_not_contains: String
-  internalName_not_in: [String]
-  name: String
-  name_contains: String
-  name_exists: Boolean
-  name_in: [String]
-  name_not: String
-  name_not_contains: String
-  name_not_in: [String]
-  shortDescription: String
-  shortDescription_contains: String
-  shortDescription_exists: Boolean
-  shortDescription_in: [String]
-  shortDescription_not: String
-  shortDescription_not_contains: String
-  shortDescription_not_in: [String]
-  sys: SysFilter
-}
-
-type TopicBusinessInfoLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageCollection(limit: Int = 100, locale: String, order: [TopicBusinessInfoLinkingCollectionsPageCollectionOrder], preview: Boolean, skip: Int = 0): PageCollection
-}
-
-enum TopicBusinessInfoLinkingCollectionsPageCollectionOrder {
-  internalName_ASC
-  internalName_DESC
-  pageName_ASC
-  pageName_DESC
-  slug_ASC
-  slug_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-enum TopicBusinessInfoOrder {
-  internalName_ASC
-  internalName_DESC
-  name_ASC
-  name_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-"""
-Container for holding info about people (article authors, company leadership, quoted customers, etc.) [See type definition](https://app.contentful.com/spaces/ruj3ara9e3f2/content_types/topicPerson)
-"""
-type TopicPerson implements Entry {
-  avatar(locale: String, preview: Boolean): Asset
-  bio(locale: String): TopicPersonBio
-  cardStyle(locale: String): Boolean
-  contentfulMetadata: ContentfulMetadata!
-  internalName(locale: String): String
-  linkedFrom(allowedLocales: [String]): TopicPersonLinkingCollections
-  location(locale: String): String
-  name(locale: String): String
-  sys: Sys!
-  website(locale: String): String
-}
-
-type TopicPersonBio {
-  json: JSON!
-  links: TopicPersonBioLinks!
-}
-
-type TopicPersonBioAssets {
-  block: [Asset]!
-  hyperlink: [Asset]!
-}
-
-type TopicPersonBioEntries {
-  block: [Entry]!
-  hyperlink: [Entry]!
-  inline: [Entry]!
-}
-
-type TopicPersonBioLinks {
-  assets: TopicPersonBioAssets!
-  entries: TopicPersonBioEntries!
-  resources: TopicPersonBioResources!
-}
-
-type TopicPersonBioResources {
-  block: [ResourceLink!]!
-  hyperlink: [ResourceLink!]!
-  inline: [ResourceLink!]!
-}
-
-type TopicPersonCollection {
-  items: [TopicPerson]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-input TopicPersonFilter {
-  AND: [TopicPersonFilter]
-  OR: [TopicPersonFilter]
-  avatar_exists: Boolean
-  bio_contains: String
-  bio_exists: Boolean
-  bio_not_contains: String
-  cardStyle: Boolean
-  cardStyle_exists: Boolean
-  cardStyle_not: Boolean
-  contentfulMetadata: ContentfulMetadataFilter
-  internalName: String
-  internalName_contains: String
-  internalName_exists: Boolean
-  internalName_in: [String]
-  internalName_not: String
-  internalName_not_contains: String
-  internalName_not_in: [String]
-  location: String
-  location_contains: String
-  location_exists: Boolean
-  location_in: [String]
-  location_not: String
-  location_not_contains: String
-  location_not_in: [String]
-  name: String
-  name_contains: String
-  name_exists: Boolean
-  name_in: [String]
-  name_not: String
-  name_not_contains: String
-  name_not_in: [String]
-  sys: SysFilter
-  website: String
-  website_contains: String
-  website_exists: Boolean
-  website_in: [String]
-  website_not: String
-  website_not_contains: String
-  website_not_in: [String]
-}
-
-type TopicPersonLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-}
-
-enum TopicPersonOrder {
-  cardStyle_ASC
-  cardStyle_DESC
-  internalName_ASC
-  internalName_DESC
-  location_ASC
-  location_DESC
-  name_ASC
-  name_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-  website_ASC
-  website_DESC
-}
-
-"""
-Container for product-specific information like card definitions, features, benefits, prices & more [See type definition](https://app.contentful.com/spaces/ruj3ara9e3f2/content_types/topicProduct)
-"""
-type TopicProduct implements Entry {
-  contentfulMetadata: ContentfulMetadata!
-  description(locale: String): TopicProductDescription
-  featuredImage(locale: String, preview: Boolean): Asset
-  featuresCollection(limit: Int = 100, locale: String, order: [TopicProductFeaturesCollectionOrder], preview: Boolean, skip: Int = 0, where: TopicProductFeatureFilter): TopicProductFeaturesCollection
-  internalName(locale: String): String
-  linkedFrom(allowedLocales: [String]): TopicProductLinkingCollections
-  name(locale: String): String
-  price(locale: String): Float
-  sys: Sys!
-}
-
-type TopicProductCollection {
-  items: [TopicProduct]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-type TopicProductDescription {
-  json: JSON!
-  links: TopicProductDescriptionLinks!
-}
-
-type TopicProductDescriptionAssets {
-  block: [Asset]!
-  hyperlink: [Asset]!
-}
-
-type TopicProductDescriptionEntries {
-  block: [Entry]!
-  hyperlink: [Entry]!
-  inline: [Entry]!
-}
-
-type TopicProductDescriptionLinks {
-  assets: TopicProductDescriptionAssets!
-  entries: TopicProductDescriptionEntries!
-  resources: TopicProductDescriptionResources!
-}
-
-type TopicProductDescriptionResources {
-  block: [ResourceLink!]!
-  hyperlink: [ResourceLink!]!
-  inline: [ResourceLink!]!
-}
-
-"""
-Sub-container for product features enabling re-use of generic features across different products [See type definition](https://app.contentful.com/spaces/ruj3ara9e3f2/content_types/topicProductFeature)
-"""
-type TopicProductFeature implements Entry {
-  contentfulMetadata: ContentfulMetadata!
-  internalName(locale: String): String
-  linkedFrom(allowedLocales: [String]): TopicProductFeatureLinkingCollections
-  longDescription(locale: String): TopicProductFeatureLongDescription
-  name(locale: String): String
-  shortDescription(locale: String): TopicProductFeatureShortDescription
-  sys: Sys!
-}
-
-type TopicProductFeatureCollection {
-  items: [TopicProductFeature]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-input TopicProductFeatureFilter {
-  AND: [TopicProductFeatureFilter]
-  OR: [TopicProductFeatureFilter]
-  contentfulMetadata: ContentfulMetadataFilter
-  internalName: String
-  internalName_contains: String
-  internalName_exists: Boolean
-  internalName_in: [String]
-  internalName_not: String
-  internalName_not_contains: String
-  internalName_not_in: [String]
-  longDescription_contains: String
-  longDescription_exists: Boolean
-  longDescription_not_contains: String
-  name: String
-  name_contains: String
-  name_exists: Boolean
-  name_in: [String]
-  name_not: String
-  name_not_contains: String
-  name_not_in: [String]
-  shortDescription_contains: String
-  shortDescription_exists: Boolean
-  shortDescription_not_contains: String
-  sys: SysFilter
-}
-
-type TopicProductFeatureLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  topicProductCollection(limit: Int = 100, locale: String, order: [TopicProductFeatureLinkingCollectionsTopicProductCollectionOrder], preview: Boolean, skip: Int = 0): TopicProductCollection
-}
-
-enum TopicProductFeatureLinkingCollectionsTopicProductCollectionOrder {
-  internalName_ASC
-  internalName_DESC
-  name_ASC
-  name_DESC
-  price_ASC
-  price_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-type TopicProductFeatureLongDescription {
-  json: JSON!
-  links: TopicProductFeatureLongDescriptionLinks!
-}
-
-type TopicProductFeatureLongDescriptionAssets {
-  block: [Asset]!
-  hyperlink: [Asset]!
-}
-
-type TopicProductFeatureLongDescriptionEntries {
-  block: [Entry]!
-  hyperlink: [Entry]!
-  inline: [Entry]!
-}
-
-type TopicProductFeatureLongDescriptionLinks {
-  assets: TopicProductFeatureLongDescriptionAssets!
-  entries: TopicProductFeatureLongDescriptionEntries!
-  resources: TopicProductFeatureLongDescriptionResources!
-}
-
-type TopicProductFeatureLongDescriptionResources {
-  block: [ResourceLink!]!
-  hyperlink: [ResourceLink!]!
-  inline: [ResourceLink!]!
-}
-
-enum TopicProductFeatureOrder {
-  internalName_ASC
-  internalName_DESC
-  name_ASC
-  name_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-type TopicProductFeatureShortDescription {
-  json: JSON!
-  links: TopicProductFeatureShortDescriptionLinks!
-}
-
-type TopicProductFeatureShortDescriptionAssets {
-  block: [Asset]!
-  hyperlink: [Asset]!
-}
-
-type TopicProductFeatureShortDescriptionEntries {
-  block: [Entry]!
-  hyperlink: [Entry]!
-  inline: [Entry]!
-}
-
-type TopicProductFeatureShortDescriptionLinks {
-  assets: TopicProductFeatureShortDescriptionAssets!
-  entries: TopicProductFeatureShortDescriptionEntries!
-  resources: TopicProductFeatureShortDescriptionResources!
-}
-
-type TopicProductFeatureShortDescriptionResources {
-  block: [ResourceLink!]!
-  hyperlink: [ResourceLink!]!
-  inline: [ResourceLink!]!
-}
-
-type TopicProductFeaturesCollection {
-  items: [TopicProductFeature]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-enum TopicProductFeaturesCollectionOrder {
-  internalName_ASC
-  internalName_DESC
-  name_ASC
-  name_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-input TopicProductFilter {
-  AND: [TopicProductFilter]
-  OR: [TopicProductFilter]
-  contentfulMetadata: ContentfulMetadataFilter
-  description_contains: String
-  description_exists: Boolean
-  description_not_contains: String
-  featuredImage_exists: Boolean
-  features: cfTopicProductFeatureNestedFilter
-  featuresCollection_exists: Boolean
-  internalName: String
-  internalName_contains: String
-  internalName_exists: Boolean
-  internalName_in: [String]
-  internalName_not: String
-  internalName_not_contains: String
-  internalName_not_in: [String]
-  name: String
-  name_contains: String
-  name_exists: Boolean
-  name_in: [String]
-  name_not: String
-  name_not_contains: String
-  name_not_in: [String]
-  price: Float
-  price_exists: Boolean
-  price_gt: Float
-  price_gte: Float
-  price_in: [Float]
-  price_lt: Float
-  price_lte: Float
-  price_not: Float
-  price_not_in: [Float]
-  sys: SysFilter
-}
-
-type TopicProductLinkingCollections {
-  componentProductTableCollection(limit: Int = 100, locale: String, order: [TopicProductLinkingCollectionsComponentProductTableCollectionOrder], preview: Boolean, skip: Int = 0): ComponentProductTableCollection
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageCollection(limit: Int = 100, locale: String, order: [TopicProductLinkingCollectionsPageCollectionOrder], preview: Boolean, skip: Int = 0): PageCollection
-}
-
-enum TopicProductLinkingCollectionsComponentProductTableCollectionOrder {
-  headline_ASC
-  headline_DESC
-  internalName_ASC
-  internalName_DESC
-  subline_ASC
-  subline_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-enum TopicProductLinkingCollectionsPageCollectionOrder {
-  internalName_ASC
-  internalName_DESC
-  pageName_ASC
-  pageName_DESC
-  slug_ASC
-  slug_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-enum TopicProductOrder {
-  internalName_ASC
-  internalName_DESC
-  name_ASC
-  name_DESC
-  price_ASC
-  price_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
 input cfIndividualCtaNestedFilter {
   AND: [cfIndividualCtaNestedFilter]
   OR: [cfIndividualCtaNestedFilter]
@@ -2987,6 +2414,37 @@ input cfMenuGroupNestedFilter {
   sys: SysFilter
 }
 
+input cfPageNestedFilter {
+  AND: [cfPageNestedFilter]
+  OR: [cfPageNestedFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  extraSectionCollection_exists: Boolean
+  internalName: String
+  internalName_contains: String
+  internalName_exists: Boolean
+  internalName_in: [String]
+  internalName_not: String
+  internalName_not_contains: String
+  internalName_not_in: [String]
+  pageName: String
+  pageName_contains: String
+  pageName_exists: Boolean
+  pageName_in: [String]
+  pageName_not: String
+  pageName_not_contains: String
+  pageName_not_in: [String]
+  seo_exists: Boolean
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+  topSectionCollection_exists: Boolean
+}
+
 input cfSeoNestedFilter {
   AND: [cfSeoNestedFilter]
   OR: [cfSeoNestedFilter]
@@ -3022,68 +2480,6 @@ input cfSeoNestedFilter {
   title_not_in: [String]
 }
 
-input cfTopicProductFeatureNestedFilter {
-  AND: [cfTopicProductFeatureNestedFilter]
-  OR: [cfTopicProductFeatureNestedFilter]
-  contentfulMetadata: ContentfulMetadataFilter
-  internalName: String
-  internalName_contains: String
-  internalName_exists: Boolean
-  internalName_in: [String]
-  internalName_not: String
-  internalName_not_contains: String
-  internalName_not_in: [String]
-  longDescription_contains: String
-  longDescription_exists: Boolean
-  longDescription_not_contains: String
-  name: String
-  name_contains: String
-  name_exists: Boolean
-  name_in: [String]
-  name_not: String
-  name_not_contains: String
-  name_not_in: [String]
-  shortDescription_contains: String
-  shortDescription_exists: Boolean
-  shortDescription_not_contains: String
-  sys: SysFilter
-}
-
-input cfTopicProductNestedFilter {
-  AND: [cfTopicProductNestedFilter]
-  OR: [cfTopicProductNestedFilter]
-  contentfulMetadata: ContentfulMetadataFilter
-  description_contains: String
-  description_exists: Boolean
-  description_not_contains: String
-  featuredImage_exists: Boolean
-  featuresCollection_exists: Boolean
-  internalName: String
-  internalName_contains: String
-  internalName_exists: Boolean
-  internalName_in: [String]
-  internalName_not: String
-  internalName_not_contains: String
-  internalName_not_in: [String]
-  name: String
-  name_contains: String
-  name_exists: Boolean
-  name_in: [String]
-  name_not: String
-  name_not_contains: String
-  name_not_in: [String]
-  price: Float
-  price_exists: Boolean
-  price_gt: Float
-  price_gte: Float
-  price_in: [Float]
-  price_lt: Float
-  price_lte: Float
-  price_not: Float
-  price_not_in: [Float]
-  sys: SysFilter
-}
-
 input cfextraSectionMultiTypeNestedFilter {
   AND: [cfextraSectionMultiTypeNestedFilter]
   OR: [cfextraSectionMultiTypeNestedFilter]
@@ -3117,7 +2513,6 @@ input cffeaturedPagesMultiTypeNestedFilter {
   internalName_not: String
   internalName_not_contains: String
   internalName_not_in: [String]
-  pageContent_exists: Boolean
   pageName: String
   pageName_contains: String
   pageName_exists: Boolean
@@ -3149,7 +2544,6 @@ input cfgroupLinkMultiTypeNestedFilter {
   internalName_not: String
   internalName_not_contains: String
   internalName_not_in: [String]
-  pageContent_exists: Boolean
   pageName: String
   pageName_contains: String
   pageName_exists: Boolean
@@ -3172,6 +2566,9 @@ input cfgroupLinkMultiTypeNestedFilter {
 input cftopSectionMultiTypeNestedFilter {
   AND: [cftopSectionMultiTypeNestedFilter]
   OR: [cftopSectionMultiTypeNestedFilter]
+  bodyText_contains: String
+  bodyText_exists: Boolean
+  bodyText_not_contains: String
   colorPalette: String
   colorPalette_contains: String
   colorPalette_exists: Boolean
@@ -3180,6 +2577,24 @@ input cftopSectionMultiTypeNestedFilter {
   colorPalette_not_contains: String
   colorPalette_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
+  ctaText: String
+  ctaText_contains: String
+  ctaText_exists: Boolean
+  ctaText_in: [String]
+  ctaText_not: String
+  ctaText_not_contains: String
+  ctaText_not_in: [String]
+  headline: String
+  headline_contains: String
+  headline_exists: Boolean
+  headline_in: [String]
+  headline_not: String
+  headline_not_contains: String
+  headline_not_in: [String]
+  imageStyle: Boolean
+  imageStyle_exists: Boolean
+  imageStyle_not: Boolean
+  image_exists: Boolean
   internalName: String
   internalName_contains: String
   internalName_exists: Boolean
@@ -3188,4 +2603,5 @@ input cftopSectionMultiTypeNestedFilter {
   internalName_not_contains: String
   internalName_not_in: [String]
   sys: SysFilter
+  targetPage_exists: Boolean
 }
