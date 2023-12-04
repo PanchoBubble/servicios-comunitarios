@@ -9,11 +9,13 @@ import { DeepPartial } from '@src/utils';
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     textAlign: 'center',
+    height: '100%',
   },
   ctaContainer: {
-    marginTop: theme.spacing(8),
+    height: '100%',
     '& a': {
       width: '100%',
+      height: '100%',
     },
   },
 }));

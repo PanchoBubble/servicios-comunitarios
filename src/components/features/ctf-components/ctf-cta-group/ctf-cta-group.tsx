@@ -30,6 +30,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   buttonWrapper: {
     display: 'grid',
+    marginTop: 30,
+    rowGap: 20,
     [theme.breakpoints.up('md')]: {
       gridTemplateColumns: '1fr 1fr',
     },

@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginLeft: 'auto',
     marginRight: 'auto',
     maxWidth: '126rem',
-    padding: theme.spacing(19, 0, 19),
+    padding: theme.spacing(19, 0, 0),
   },
   sectionHeadlines: {
-    marginBottom: theme.spacing(12),
+    // marginBottom: theme.spacing(12),
   },
 }));
 
@@ -33,12 +33,17 @@ export const CtfTextBlock = ({
       maxWidth={false}
       style={{
         backgroundColor: colorConfig.backgroundColor,
-      }}>
+      }}
+    >
       <div className={classes.innerContainer}>
         <SectionHeadlines
           headline={headline}
           headlineProps={{
-            style: { color: colorConfig.headlineColor },
+            style: {
+              color: colorConfig.headlineColor,
+              fontSize: '5rem',
+              textDecoration: 'underline',
+            },
           }}
           subline={subline}
           sublineProps={{
@@ -50,7 +55,8 @@ export const CtfTextBlock = ({
           <div
             style={{
               color: colorConfig.textColor,
-            }}>
+            }}
+          >
             <CtfRichtext {...body} />
           </div>
         )}
