@@ -13,7 +13,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   ctaContainer: {
     height: '100%',
+    width: '100%',
     '& a': {
+      width: '100%',
+      height: '100%',
+    },
+    '& button': {
       width: '100%',
       height: '100%',
     },
@@ -33,20 +38,18 @@ export const CtfCtaIndividual = (props: DeepPartial<IndividualCta> & { colorPale
         backgroundColor: colorConfig.backgroundColor,
       }}
     >
-      {targetPage && targetPage.slug && (
-        <div className={classes.ctaContainer}>
-          <PageLink
-            size="large"
-            page={targetPage as any}
-            variant="contained"
-            color={colorConfig.buttonColor}
-            isButton
-            urlParams={urlParameters ?? ''}
-          >
-            {ctaText}
-          </PageLink>
-        </div>
-      )}
+      <div className={classes.ctaContainer}>
+        <PageLink
+          size="large"
+          page={targetPage?.slug as any}
+          variant="contained"
+          color={colorConfig.buttonColor}
+          isButton
+          urlParams={urlParameters ?? ''}
+        >
+          {ctaText}
+        </PageLink>
+      </div>
     </Container>
   );
 };

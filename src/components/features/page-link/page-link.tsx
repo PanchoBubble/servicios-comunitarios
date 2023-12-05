@@ -9,22 +9,24 @@ export type PageLinkProps = Omit<LinkProps, 'children'> & {
   children?: ReactNode;
 };
 
-export const PageLink = (props: PageLinkProps) => {
-  const pathname = props.page.slug ? `/${props.page.slug}` : ``;
+export const PageLink = (props?: PageLinkProps) => {
+  const pathname = props?.page?.slug ? `/${props?.page?.slug}` : ``;
 
-  const linkProps = {
-    href: pathname,
-    className: props.className,
-    onClick: props.onClick,
-    withoutMaterial: props.withoutMaterial,
-    underline: props.underline,
-    isButton: props.isButton || false,
-    variant: props.variant,
-    size: props.size,
-    color: props.color,
-    endIcon: props.endIcon,
-    urlParams: props.urlParams,
-  };
+  const linkProps = props
+    ? {
+        href: pathname,
+        className: props.className,
+        onClick: props.onClick,
+        withoutMaterial: props.withoutMaterial,
+        underline: props.underline,
+        isButton: props.isButton || false,
+        variant: props.variant,
+        size: props.size,
+        color: props.color,
+        endIcon: props.endIcon,
+        urlParams: props.urlParams,
+      }
+    : {};
 
-  return <Link {...linkProps}>{props.render ? props.render(pathname) : props.children}</Link>;
+  return <Link {...linkProps}>{props?.render ? props?.render(pathname) : props?.children}</Link>;
 };

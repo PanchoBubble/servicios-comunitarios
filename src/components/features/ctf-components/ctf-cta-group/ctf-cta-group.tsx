@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 export const CtfCtaGroup = (props: CtaGroupFieldsFragment) => {
-  console.log(props);
   const { headline, subline, buttonsCollection, colorPalette } = props;
   const colorConfig = getColorConfigFromPalette(colorPalette || '');
 

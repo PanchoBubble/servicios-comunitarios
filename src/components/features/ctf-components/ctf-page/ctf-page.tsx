@@ -11,7 +11,6 @@ const CtfPage = (props: CtfPageFieldsFragment) => {
   //const content = props.pageContent;
   const extraSection =
     props.extraSectionCollection && props.extraSectionCollection.items.filter(it => !!it);
-  console.log(props);
 
   const layoutConfig = {
     ...defaultLayout,
