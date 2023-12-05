@@ -41,7 +41,7 @@ export const CtfCtaIndividual = (props: DeepPartial<IndividualCta> & { colorPale
       <div className={classes.ctaContainer}>
         <PageLink
           size="large"
-          page={targetPage?.slug as any}
+          page={targetPage as any}
           variant="contained"
           color={colorConfig.buttonColor}
           isButton
