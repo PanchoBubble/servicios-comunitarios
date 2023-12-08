@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxShadow: '0 2px 6px #00000021',
   },
   toolbar: {
+    backgroundColor: '#F7F7F7',
     height: HEADER_HEIGHT_MD,
     [theme.breakpoints.up('md')]: {
       height: HEADER_HEIGHT,
@@ -26,9 +27,18 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'space-between',
   },
   logo: {
-    display: 'block',
-    maxWidth: '120px',
-    height: 'auto',
+    display: 'flex',
+    alignContent: 'center',
+    // transform: "scale(.7)",
+    // [theme.breakpoints.up('md')]: {
+    //   transform: "scale(1)",
+    // },
+    height: '100%',
+    width: 'fit-content',
+    '& svg': {
+      height: '100%',
+      width: 'fit-content',
+    },
   },
   menuWrapper: {
     alignItems: 'center',
@@ -77,7 +87,7 @@ export const Header = (props: HeaderPropsInterface) => {
 
   return (
     <AppBar position="sticky" color="secondary" className={classes.appbar}>
-      <Toolbar>
+      <Toolbar className={classes.toolbar}>
         <Container
           className={classes.toolbarContent}
           disableGutters
@@ -86,7 +96,7 @@ export const Header = (props: HeaderPropsInterface) => {
             maxWidth: `${CONTAINER_WIDTH / 10}rem`,
           }}
         >
-          <Link href="/" withoutMaterial title={t('common.homepage')}>
+          <Link className={classes.logo} href="/" withoutMaterial title={t('common.homepage')}>
             <Logo className={classes.corporateLogo} />
           </Link>
           <Box display={{ xs: 'none', md: 'block' }}>
@@ -97,17 +107,17 @@ export const Header = (props: HeaderPropsInterface) => {
         </Container>
 
         {/* menu button */}
-        <Box display={{ md: 'none' }}>
-          <IconButton
-            title={t('navigation.mobileMenuButton')}
-            onClick={() => onMenuClick?.()}
-            aria-controls="mobile-menu"
-            aria-expanded={isMenuOpen}
-            aria-haspopup="dialog"
-          >
-            <Menu />
-          </IconButton>
-        </Box>
+        {/*<Box display={{ md: 'none' }}>*/}
+        {/*  <IconButton*/}
+        {/*    title={t('navigation.mobileMenuButton')}*/}
+        {/*    onClick={() => onMenuClick?.()}*/}
+        {/*    aria-controls="mobile-menu"*/}
+        {/*    aria-expanded={isMenuOpen}*/}
+        {/*    aria-haspopup="dialog"*/}
+        {/*  >*/}
+        {/*    <Menu />*/}
+        {/*  </IconButton>*/}
+        {/*</Box>*/}
       </Toolbar>
     </AppBar>
   );

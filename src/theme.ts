@@ -3,8 +3,8 @@ import { TypographyStyleOptions } from '@mui/material/styles/createTypography';
 
 export const CONTAINER_WIDTH = 1260;
 export const SPACER = 5;
-export const HEADER_HEIGHT = '9rem';
-export const HEADER_HEIGHT_MD = '8rem';
+export const HEADER_HEIGHT = '2rem';
+export const HEADER_HEIGHT_MD = '2rem';
 
 interface ColorConfigInterface {
   headlineColor: string;
@@ -208,10 +208,10 @@ const colorfulTheme = createTheme({
           '#__next': {
             display: 'flex',
             flexDirection: 'column',
-          }
+          },
         },
-      }
-    }
+      },
+    },
   },
 });
 

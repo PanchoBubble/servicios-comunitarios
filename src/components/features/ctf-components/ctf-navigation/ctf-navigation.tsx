@@ -9,6 +9,7 @@ import { Link } from '@src/components/shared/link';
 
 const useStyles = makeStyles((theme: Theme) => ({
   menu: {
+    backgroundColor: '#215731',
     alignItems: 'center',
     display: 'flex',
     listStyle: 'none',

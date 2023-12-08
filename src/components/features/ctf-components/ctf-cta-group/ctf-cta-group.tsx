@@ -5,7 +5,6 @@ import { CtaGroupFieldsFragment } from './__generated/ctf-cta-group.generated';
 
 import { CtfCtaIndividual } from '@src/components/features/ctf-components/ctf-cta-individual/ctf-cta-individual';
 import { CtfRichtext } from '@src/components/features/ctf-components/ctf-richtext/ctf-richtext';
-import { PageLink } from '@src/components/features/page-link';
 import LayoutContext, { defaultLayout } from '@src/layout-context';
 import { getColorConfigFromPalette } from '@src/theme';
 import { optimizeLineBreak } from '@src/utils';
@@ -18,19 +17,19 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginLeft: 'auto',
     marginRight: 'auto',
     maxWidth: '93.4rem',
-    padding: theme.spacing(19, 0, 19),
+    padding: theme.spacing(19, 0, 8),
   },
   headline: {
     fontWeight: 'bold',
+    marginBottom: theme.spacing(8),
   },
   subline: {
     fontWeight: 400,
     lineHeight: 1.52,
-    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(8),
   },
   buttonWrapper: {
     display: 'grid',
-    marginTop: 30,
     rowGap: 20,
     [theme.breakpoints.up('md')]: {
       gridTemplateColumns: '1fr 1fr',
@@ -70,7 +69,7 @@ export const CtfCtaGroup = (props: CtaGroupFieldsFragment) => {
             </div>
           </LayoutContext.Provider>
         )}
-        <div className={classes.buttonWrapper}>
+        <div className={(buttonsCollection?.items?.length || 0) > 1 ? classes.buttonWrapper : ''}>
           {buttonsCollection?.items?.map(
             button =>
               button && (
