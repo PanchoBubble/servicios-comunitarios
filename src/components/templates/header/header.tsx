@@ -29,12 +29,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   logo: {
     display: 'flex',
     alignContent: 'center',
-    transform: 'scale(.8)',
     height: '100%',
     width: '100%',
     '& svg': {
+      transform: 'scale(.7)',
+      overflow: 'visible',
       height: '100%',
-      width: '100%',
+      width: 450,
     },
     [theme.breakpoints.up('md')]: {
       transform: 'scale(1)',
