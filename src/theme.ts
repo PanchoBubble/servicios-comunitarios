@@ -69,7 +69,7 @@ export const getColorConfigFromPalette = (palette: string): ColorConfigInterface
 const colorfulTheme = createTheme({
   spacing: SPACER,
   typography: {
-    fontFamily: `'Red Hat Display', sans-serif`,
+    fontFamily: `'Montserrat', sans-serif`,
     htmlFontSize: 10,
     caption: {
       fontSize: '1.5rem',
