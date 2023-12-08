@@ -13,16 +13,18 @@ import { getColorConfigFromPalette, HEADER_HEIGHT_MD, HEADER_HEIGHT } from '@src
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    alignItems: 'center',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     display: 'flex',
     overflow: 'hidden',
     position: 'relative',
+    [theme.breakpoints.up('md')]: {
+      alignItems: 'center',
+    },
   },
 
   fullScreen: {
-    minHeight: `calc(100vh - ${HEADER_HEIGHT_MD})`,
+    minHeight: `calc(30vh - ${HEADER_HEIGHT_MD})`,
     [theme.breakpoints.up('md')]: {
       minHeight: `calc(100vh - ${HEADER_HEIGHT})`,
     },
@@ -35,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginLeft: 'auto',
     marginRight: 'auto',
     maxWidth: '125.8rem',
-    padding: theme.spacing(33, 0, 33),
+    padding: theme.spacing(10, 0, 33),
     position: 'relative',
     width: '100%',
     '@media (min-height: 91.2em)': {
@@ -72,6 +74,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 800,
     lineHeight: 1.08,
     maxWidth: '44rem',
+    background: '#f7f7f7d9',
+    borderRadius: 8,
+    boxShadow: '4px 5px 12px black',
+    padding: 15,
+    [theme.breakpoints.up('md')]: {
+      background: 'unset',
+      borderRadius: 'unset',
+      boxShadow: 'unset',
+      padding: 'unset',
+    },
     [theme.breakpoints.up('xl')]: {
       fontSize: '3.8rem',
     },
@@ -83,7 +95,17 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: theme.spacing(6),
     maxWidth: '46.9rem',
     '& p': {
+      borderRadius: 8,
+      background: '#f7f7f7d9',
       fontSize: '2.5rem',
+      boxShadow: '4px 5px 12px black',
+      padding: 15,
+      [theme.breakpoints.up('md')]: {
+        background: 'unset',
+        borderRadius: 'unset',
+        boxShadow: 'unset',
+        padding: 'unset',
+      },
       [theme.breakpoints.up('xl')]: {
         fontSize: '2.5rem',
       },
