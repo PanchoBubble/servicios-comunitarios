@@ -1,5 +1,4 @@
-import Menu from '@mui/icons-material/Menu';
-import { AppBar, Container, IconButton, Theme, Toolbar, Box } from '@mui/material';
+import { AppBar, Container, Theme, Toolbar, Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useTranslation } from 'next-i18next';
 
@@ -13,6 +12,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxShadow: '0 2px 6px #00000021',
   },
   toolbar: {
+    padding: 0,
     backgroundColor: '#F7F7F7',
     height: HEADER_HEIGHT_MD,
     [theme.breakpoints.up('md')]: {
@@ -29,15 +29,19 @@ const useStyles = makeStyles((theme: Theme) => ({
   logo: {
     display: 'flex',
     alignContent: 'center',
-    // transform: "scale(.7)",
-    // [theme.breakpoints.up('md')]: {
-    //   transform: "scale(1)",
-    // },
+    transform: 'scale(.8)',
     height: '100%',
-    width: 'fit-content',
+    width: '100%',
     '& svg': {
       height: '100%',
+      width: '100%',
+    },
+    [theme.breakpoints.up('md')]: {
+      transform: 'scale(1)',
       width: 'fit-content',
+      '& svg': {
+        width: 'fit-content',
+      },
     },
   },
   menuWrapper: {
