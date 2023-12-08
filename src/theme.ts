@@ -28,13 +28,13 @@ const colorConfigs: { [key: string]: ColorConfigInterface } = {
   },
   'palette-2. White Smoke (#FCFCFC)': {
     headlineColor: '#1B273A',
-    textColor: '#414D63',
+    textColor: '#dde3f1',
     backgroundColor: '#fcfcfc',
     buttonColor: 'primary',
   },
   'palette-3. Light Gray (#F4F4F4)': {
     headlineColor: '#000',
-    textColor: '#000',
+    textColor: '#fafafa',
     backgroundColor: '#f4f4f4',
     buttonColor: 'primary',
   },
@@ -78,10 +78,11 @@ const colorfulTheme = createTheme({
   },
   palette: {
     text: {
-      primary: '#000',
+      primary: '#ffffff',
     },
     primary: {
-      main: '#000',
+      main: '#56a591',
+      contrastText: '#fff',
     },
     secondary: {
       main: '#fff',
