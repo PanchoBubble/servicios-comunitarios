@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginLeft: 'auto',
     marginRight: 'auto',
     maxWidth: '125.8rem',
-    padding: theme.spacing(10, 0, 33),
+    padding: theme.spacing(18, 0, 30),
     position: 'relative',
     width: '100%',
     '@media (min-height: 91.2em)': {

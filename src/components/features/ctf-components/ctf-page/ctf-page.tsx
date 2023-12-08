@@ -18,7 +18,7 @@ const CtfPage = (props: CtfPageFieldsFragment) => {
   };
 
   return (
-    <PageContainer>
+    <PageContainer hideBackArrow={!props.slug || props.slug === 'home'}>
       {topSection &&
         topSection.map(entry => (
           <LayoutContext.Provider value={layoutConfig} key={entry!.sys.id}>
