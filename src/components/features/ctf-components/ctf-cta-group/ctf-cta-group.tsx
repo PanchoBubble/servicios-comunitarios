@@ -28,6 +28,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     justifyContent: 'center',
     gap: 20,
+    flexDirection: 'column-reverse',
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'row',
+      gridTemplateColumns: '1fr 1fr',
+    },
   },
   subline: {
     fontWeight: 400,
@@ -55,8 +60,8 @@ export const CtfCtaGroup = (props: CtaGroupFieldsFragment) => {
       <TextField
         value={search}
         onChange={e => setSearch(e.target.value)}
-        id="standard-basic"
-        label="Standard"
+        id="buscar-basic"
+        label="Buscar"
         variant="standard"
       />
     ) : null;
