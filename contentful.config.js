@@ -7,13 +7,11 @@ module.exports = {
     cpa_token: process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN || '',
   },
   meta: {
-    title: 'Digital banking for the new generation | Colorful Coin',
-    description: `Enjoy premium banking services wherever you go: instant transfers and best exchange rates, exclusive offers and priority customer support. Apply online at ${url
-      .replace('https://', '')
-      .replace('http://', '')}`,
+    title: 'Servicios comunitarios San Isidro',
+    description: 'En esta página encontrarás toda la información acerca de los servicios comunitarios qué se brindan en el partido de San Isidro',
     url,
     image:
-      'https://images.ctfassets.net/w8vf7dk7f259/4bucno7z1xAyVI5MOkU6Pu/ded83d0ec1eb732ae3a81ddab7a18877/fallback-image-03.jpg',
+      'url("https://images.ctfassets.net/ruj3ara9e3f2/1xeKYb3n7AF2xp44iXp9sj/05d856f82c6f3f3ffc63242c38126cd4/8-Qualities-That-Make-a-Positive-Community.jpg?w=2524")',
   },
   icon: {
     light:
