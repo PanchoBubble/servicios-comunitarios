@@ -11,7 +11,7 @@ module.exports = {
     description: 'En esta página encontrarás toda la información acerca de los servicios comunitarios qué se brindan en el partido de San Isidro',
     url,
     image:
-      'url("https://images.ctfassets.net/ruj3ara9e3f2/1xeKYb3n7AF2xp44iXp9sj/05d856f82c6f3f3ffc63242c38126cd4/8-Qualities-That-Make-a-Positive-Community.jpg?w=2524")',
+      'url("https://images.ctfassets.net/ruj3ara9e3f2/1xeKYb3n7AF2xp44iXp9sj/05d856f82c6f3f3ffc63242c38126cd4/8-Qualities-That-Make-a-Positive-Community.jpg?w=1200")',
   },
   icon: {
     light:

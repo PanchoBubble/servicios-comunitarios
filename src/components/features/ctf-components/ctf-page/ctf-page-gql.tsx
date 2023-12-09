@@ -69,11 +69,7 @@ const CtfPageGgl = ({ slug: slugFromProps }: Props) => {
         )}
         {robots.length > 0 && <meta key="robots" name="robots" content={robots.join(', ')} />}
         {metaTags.image && (
-          <meta
-            key="og:image"
-            property="og:image"
-            content={`${metaTags.image.url}?w=1200&h=630&f=faces&fit=fill`}
-          />
+          <meta key="og:image" property="og:image" content={`${metaTags.image.url}`} />
         )}
         {page.slug && (
           <meta
