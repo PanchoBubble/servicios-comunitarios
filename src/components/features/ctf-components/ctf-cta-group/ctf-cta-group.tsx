@@ -1,5 +1,6 @@
-import { Container, Theme, Typography } from '@mui/material';
+import { Container, TextField, Theme, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import { useState } from 'react';
 
 import { CtaGroupFieldsFragment } from './__generated/ctf-cta-group.generated';
 
@@ -23,6 +24,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 'bold',
     marginBottom: theme.spacing(8),
   },
+  headlineWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: 20,
+  },
   subline: {
     fontWeight: 400,
     lineHeight: 1.52,
@@ -40,8 +46,20 @@ const useStyles = makeStyles((theme: Theme) => ({
 export const CtfCtaGroup = (props: CtaGroupFieldsFragment) => {
   const { headline, subline, buttonsCollection, colorPalette } = props;
   const colorConfig = getColorConfigFromPalette(colorPalette || '');
+  const [search, setSearch] = useState('');
 
   const classes = useStyles();
+
+  const searchMarup =
+    (buttonsCollection?.items?.length || 0) > 4 ? (
+      <TextField
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+        id="standard-basic"
+        label="Standard"
+        variant="standard"
+      />
+    ) : null;
 
   return (
     <Container
@@ -53,14 +71,17 @@ export const CtfCtaGroup = (props: CtaGroupFieldsFragment) => {
     >
       <div className={classes.innerContainer}>
         {headline && (
-          <Typography
-            variant="h1"
-            component="h2"
-            className={classes.headline}
-            style={{ color: colorConfig.headlineColor }}
-          >
-            {optimizeLineBreak(headline)}
-          </Typography>
+          <div className={classes.headlineWrapper}>
+            <Typography
+              variant="h1"
+              component="h2"
+              className={classes.headline}
+              style={{ color: colorConfig.headlineColor }}
+            >
+              {optimizeLineBreak(headline)}
+            </Typography>
+            {searchMarup}
+          </div>
         )}
         {subline && (
           <LayoutContext.Provider value={{ ...defaultLayout, parent: 'cta-subline' }}>
@@ -70,12 +91,14 @@ export const CtfCtaGroup = (props: CtaGroupFieldsFragment) => {
           </LayoutContext.Provider>
         )}
         <div className={(buttonsCollection?.items?.length || 0) > 1 ? classes.buttonWrapper : ''}>
-          {buttonsCollection?.items?.map(
-            button =>
-              button && (
-                <CtfCtaIndividual key={button?.sys.id} {...button} colorPalette={colorPalette} />
-              ),
-          )}
+          {buttonsCollection?.items
+            ?.filter(item => item?.ctaText?.toLowerCase()?.includes(search.toLowerCase()))
+            ?.map(
+              button =>
+                button && (
+                  <CtfCtaIndividual key={button?.sys.id} {...button} colorPalette={colorPalette} />
+                ),
+            )}
         </div>
       </div>
     </Container>

@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   fullScreen: {
     minHeight: `calc(30vh - ${HEADER_HEIGHT_MD})`,
     [theme.breakpoints.up('md')]: {
-      minHeight: `calc(100vh - ${HEADER_HEIGHT})`,
+      minHeight: `calc(60vh - ${HEADER_HEIGHT})`,
     },
     '@media (min-height: 91.2em)': {
       minHeight: '91.2rem',
