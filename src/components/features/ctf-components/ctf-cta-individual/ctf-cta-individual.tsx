@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
 }));
+const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
 export const CtfCtaIndividual = (props: DeepPartial<IndividualCta> & { colorPalette?: any }) => {
   const { ctaText, colorPalette, urlParameters, targetPage } = props;
@@ -47,7 +48,7 @@ export const CtfCtaIndividual = (props: DeepPartial<IndividualCta> & { colorPale
           isButton
           urlParams={urlParameters ?? ''}
         >
-          {ctaText}
+          {capitalize(ctaText)}
         </PageLink>
       </div>
     </Container>

@@ -14,6 +14,7 @@ import { queryConfig } from '@src/lib/gql-client';
 import colorfulTheme from '@src/theme';
 import contentfulConfig from 'contentful.config';
 import nextI18nConfig from 'next-i18next.config';
+import '../styles/global.css';
 
 const LivePreviewProvider = ({ children }) => {
   const { previewActive, locale } = useContentfulContext();
