@@ -48,7 +48,7 @@ export const CtfCtaIndividual = (props: DeepPartial<IndividualCta> & { colorPale
           isButton
           urlParams={urlParameters ?? ''}
         >
-          {capitalize(ctaText)}
+          {capitalize(ctaText || '')}
         </PageLink>
       </div>
     </Container>
