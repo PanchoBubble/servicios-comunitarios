@@ -69,15 +69,19 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '50%',
   },
 
+  headlineContrast: {
+    borderRadius: 8,
+    background: '#f7f7f7d9',
+    fontSize: '2.5rem',
+    boxShadow: '4px 5px 12px black',
+    padding: 15,
+  },
+
   headline: {
     fontSize: '3rem',
     fontWeight: 800,
     lineHeight: 1.08,
     maxWidth: '44rem',
-    background: '#f7f7f7d9',
-    borderRadius: 8,
-    boxShadow: '4px 5px 12px black',
-    padding: 15,
     [theme.breakpoints.up('md')]: {
       background: 'unset',
       borderRadius: 'unset',
@@ -89,17 +93,21 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
 
-  body: {
-    fontWeight: 400,
-    lineHeight: 1.56,
-    marginTop: theme.spacing(6),
-    maxWidth: '46.9rem',
+  contrast: {
     '& p': {
       borderRadius: 8,
       background: '#f7f7f7d9',
       fontSize: '2.5rem',
       boxShadow: '4px 5px 12px black',
       padding: 15,
+    },
+  },
+  body: {
+    fontWeight: 400,
+    lineHeight: 1.56,
+    marginTop: theme.spacing(6),
+    maxWidth: '46.9rem',
+    '& p': {
       [theme.breakpoints.up('md')]: {
         background: 'unset',
         borderRadius: 'unset',
@@ -178,7 +186,7 @@ export const CtfHeroBanner = (props: HeroBannerFieldsFragment) => {
         {headline && (
           <Typography
             variant="h1"
-            className={classes.headline}
+            className={`${classes.headline} ${backgroundImage ? classes.headlineContrast : ''}`}
             style={{ color: colorConfig.headlineColor }}
             {...inspectorMode({ fieldId: 'headline' })}
           >
@@ -191,7 +199,10 @@ export const CtfHeroBanner = (props: HeroBannerFieldsFragment) => {
               style={{ color: colorConfig.textColor }}
               {...inspectorMode({ fieldId: 'bodyText' })}
             >
-              <CtfRichtext {...bodyText} className={classes.body} />
+              <CtfRichtext
+                {...bodyText}
+                className={`${classes.body} ${backgroundImage ? classes.contrast : ''}`}
+              />
             </div>
           </LayoutContext.Provider>
         )}
